@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "username": "prakhar",
+      "password": "prakhar",
+      "product": "Nexus 6"
+    },
+    {
+      "username": "pavanol",
+      "password": "test@123",
+      "product": "Samsung galaxy s6"
+    }
+  ]
+}
