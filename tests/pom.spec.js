@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const { LoginPage } = require("../pages/loginpage");
+const { LoginPage } = require("../pages/LoginPage");
 const { HomePage } = require("../pages/HomePage");
 const { CartPage } = require("../pages/CartPage");
 
