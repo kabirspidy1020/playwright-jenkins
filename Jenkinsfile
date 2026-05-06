@@ -37,14 +37,14 @@ pipeline {
 
         success {
             echo "Tests Passed ✅"
-            mail to: 'yourmail@gmail.com',
+            mail to: 'tiwariprakhar037@gmail.com',
                  subject: "Build Passed ✅",
                  body: "All tests passed"
         }
 
         failure {
             echo "Tests Failed ❌"
-            mail to: 'yourmail@gmail.com',
+            mail to: 'tiwariprakhar037@gmail.com',
                  subject: "Build Failed ❌",
                  body: "Check Jenkins logs"
         }
