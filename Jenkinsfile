@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Install Dependencies') {
             steps {
                 bat 'npm ci'
@@ -24,13 +23,27 @@ pipeline {
 
     post {
         always {
-            echo 'Build Completed'
+            echo "Build Completed"
+
+            publishHTML([
+                reportDir: 'playwright-report',
+                reportFiles: 'index.html',
+                reportName: 'Playwright Report'
+            ])
         }
+
         success {
-            echo 'Tests Passed ✅'
+            echo "Tests Passed ✅"
+            mail to: 'yourmail@gmail.com',
+                 subject: "Build Passed ✅",
+                 body: "All tests passed"
         }
+
         failure {
-            echo 'Tests Failed ❌'
+            echo "Tests Failed ❌"
+            mail to: 'yourmail@gmail.com',
+                 subject: "Build Failed ❌",
+                 body: "Check Jenkins logs"
         }
     }
 }
