@@ -16,7 +16,8 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'npx playwright test --project=chromium'
+                bat 'if exist playwright-report rmdir /s /q playwright-report'
+                bat 'npx playwright test'
             }
         }
     }
@@ -31,10 +32,9 @@ pipeline {
             reportName: 'Playwright Report',
             keepAll: true,
             alwaysLinkToLastBuild: true,
-            allowMissing: false
+            allowMissing: true
         ])
         }
-
         success {
             echo "Tests Passed ✅"
             mail to: 'tiwariprakhar037@gmail.com',
