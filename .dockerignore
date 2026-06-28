@@ -1,0 +1,8 @@
+node_modules
+playwright-report
+allure-report
+test-results
+.git
+.gitignore
+.vscode
+.env

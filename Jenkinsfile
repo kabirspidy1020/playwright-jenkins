@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Install Dependencies') {
+        stage('Build Docker Image') {
             steps {
-                bat 'npm ci'
+                bat 'docker compose build'
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
         always {
             echo "Build Completed"
 
-            // ✅ Correct HTML Publisher syntax
+            //  Correct HTML Publisher syntax
             publishHTML(target: [
                 reportDir: 'playwright-report',
                 reportFiles: 'index.html',
@@ -42,16 +42,16 @@ pipeline {
         }
 
         success {
-            echo "Tests Passed ✅"
+            echo "Tests Passed "
             mail to: 'tiwariprakhar037@gmail.com',
-                 subject: "Build Passed ✅",
+                 subject: "Build Passed ",
                  body: "All tests passed"
         }
 
         failure {
-            echo "Tests Failed ❌"
+            echo "Tests Failed "
             mail to: 'tiwariprakhar037@gmail.com',
-                 subject: "Build Failed ❌",
+                 subject: "Build Failed ",
                  body: "Check Jenkins logs"
         }
     }
