@@ -8,20 +8,17 @@ pipeline {
             }
         }
 
-        stage('Install Browsers') {
-            steps {
-                // Install only chromium (fast & stable)
-                bat 'npx playwright install chromium'
-            }
-        }
+        // stage('Install Browsers') {
+        //     steps {
+        //         // Install only chromium (fast & stable)
+        //         bat 'npx playwright install chromium'
+        //     }
+        // }
 
         stage('Run Tests') {
             steps {
-                // Clean old reports
                 bat 'if exist playwright-report rmdir /s /q playwright-report'
-
-                // Run tests (only chromium)
-                bat 'npx playwright test --project=chromium'
+                bat 'docker compose up'
             }
         }
     }
@@ -29,6 +26,7 @@ pipeline {
     post {
         always {
             echo "Build Completed"
+            bat 'docker compose down'
 
             //  Correct HTML Publisher syntax
             publishHTML(target: [
